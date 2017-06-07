@@ -14,7 +14,7 @@
 
     <script>
 
-        var ip=""
+        var ip="192.168.0.10";
         $(document).ready(function () {
             $("#pesquisar").bind("input propertychange", function (evt) {
                   if (window.event && event.type == "propertychange" && event.propertyName != "value")
@@ -37,7 +37,7 @@
                              
                if($("#pesquisar").val() !== ""){
                   $.ajax({
-                    url: "http://192.168.0.10:9000/api/get_weather_by_locale_name/" + encodeURI($("#pesquisar").val()),
+                    url: "http://"+ip+":9000/api/get_weather_by_locale_name/" + encodeURI($("#pesquisar").val()),
                     method: 'GET',
                     success: function (tempos) {
                       if ("error" in tempos) {
@@ -53,11 +53,9 @@
                             //$("#conteudo").empty();
                             $("#cidade").text("Previsão para " + tempos.locale.name + " - SP");
                             $.get("card.html", function (data) {
-                              console.log(data);
+                              
                             for (i = 0; i < tempos.weather.length; i++) {
                                 obj = tempos.weather[i];
-                                //console.log(obj);
-                                //console.log(data);
                                 $("#conteudo").append(data);
                                 $("#data").text(formatarData(obj.date));
                                 $("#previsao").text(obj.text);
