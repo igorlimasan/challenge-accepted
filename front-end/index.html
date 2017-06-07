@@ -1,0 +1,131 @@
+<html >
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    
+    <title>Weather Search</title>
+    <link rel="stylesheet" href="/node_modules/material-design-lite/material.min.css">
+    <script src="/node_modules/material-design-lite/material.min.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/iconfont/material-icons.css">
+    <link rel="stylesheet" href="css/material.indigo-blue.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script>
+
+        var ip=""
+        $(document).ready(function () {
+            $("#pesquisar").bind("input propertychange", function (evt) {
+                  if (window.event && event.type == "propertychange" && event.propertyName != "value")
+                      return;
+                  
+                  search();
+              });
+          });
+      
+      function formatarData(data){
+        lista = data.split("-");
+        return lista[2]+"/"+lista[1]+"/"+lista[0];
+      }
+
+
+      function search() {
+              
+              $("#conteudo").empty();
+              $("#cidade").text("");       
+                             
+               if($("#pesquisar").val() !== ""){
+                  $.ajax({
+                    url: "http://192.168.0.10:9000/api/get_weather_by_locale_name/" + encodeURI($("#pesquisar").val()),
+                    method: 'GET',
+                    success: function (tempos) {
+                      if ("error" in tempos) {
+                        //$("#conteudo").empty();
+                        $("#conteudo").append(
+                          '<div class="mdl-grid center-items mdl-color--grey-300">' +
+                            '<div class="mdl-cell mdl-cell--12-col">' +
+                              '<h5>Cidade não encontrada</h5>' +
+                            '</div>' +
+                          '</div>');
+                      }
+                      else{                   
+                            //$("#conteudo").empty();
+                            $("#cidade").text("Previsão para " + tempos.locale.name + " - SP");
+                            $.get("card.html", function (data) {
+                              console.log(data);
+                            for (i = 0; i < tempos.weather.length; i++) {
+                                obj = tempos.weather[i];
+                                //console.log(obj);
+                                //console.log(data);
+                                $("#conteudo").append(data);
+                                $("#data").text(formatarData(obj.date));
+                                $("#previsao").text(obj.text);
+                                $("#max").text(obj.temperature.max + "°");
+                                $("#min").text(obj.temperature.min + "°");
+                                $("#preciptacao").text(obj.rain.precipitation + "mm");
+                                $("#possibilidade").text(obj.rain.probability + "%");
+
+
+                                $("#data").removeAttr("id");
+                                $("#previsao").removeAttr("id");
+                                $("#max").removeAttr("id");
+                                $("#min").removeAttr("id");
+                                $("#preciptacao").removeAttr("id");
+                                $("#possibilidade").removeAttr("id");
+
+                          }
+                          
+                        });
+
+                        $("#conteudo").hide().fadeIn("fast");
+
+                      }
+                    },
+                    error:function(data){
+                      $("#conteudo").append(
+                          '<div class="mdl-grid center-items mdl-color--grey-300">' +
+                          '<div class="mdl-cell mdl-cell--12-col">' +
+                          '<h5>Erro</h5>' +
+                          '</div>' +
+                          '</div>');
+                    }
+                  });
+               }
+            }
+    </script>
+  </head>
+  <body >
+      <div class="mdl-toolbar mdl-toolbar--appbar mdl-color--primary">
+        <center>
+          <img class="logo" src="images/logo-white.png" style="">
+        </center>
+
+      </div>
+    <main >
+
+     
+        <div class="mdl-grid center-items bg-white">
+          <div class="mdl-cell mdl-cell--12-col">
+              <!--Caixa de pesquisa-->
+              <div class="mdl-textfield mdl-js-textfield text-field">
+                  <input class="mdl-textfield__input" type="text" maxlength="25"  id="pesquisar">
+                  <label class="mdl-textfield__label " for="pesquisar">Inserir cidade...</label>
+                  <i class="material-icons mdl-textfield__label__icon icon-inline">search</i>
+              </div>
+          </div>
+        </div>
+        <div class="mdl-grid center-items mdl-color--grey-300">
+          <div class="mdl-cell mdl-cell--12-col">
+                <h5 id="cidade"></h5>
+           </div>
+        </div>
+        <div  id="conteudo" class="mdl-grid center-items mdl-color--grey-300">
+            
+            
+         </div>
+        
+
+    </main>
+  </body>
+</html>

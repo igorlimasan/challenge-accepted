@@ -1,0 +1,81 @@
+.bg-white{
+    background-color: #fff;
+}
+body{
+    background-color: #e0e0e0
+
+}
+.card-text{
+    text-align: left;
+}
+.celsius{
+    font-size: 50px;
+}
+
+.chuva{
+    font-size: 25px;
+    padding-left: 5px;
+}
+.chuva.possibilidade{
+    padding-left: 20px;
+}
+.icon-align{
+        padding-bottom: 15px;
+        padding-left: 8px;
+
+}
+.icon-align.umbrella{
+        padding-left: 26px;
+}
+.icon-inline{
+    position: absolute;
+    right: 0;
+    top: 20px;
+}
+.logo{
+    height: 25px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    
+}
+
+.mdl-grid.center-items {
+  justify-content: center;
+}
+
+.mdl-card__supporting-text{
+    color:#000;
+}
+
+
+
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+.text-field{
+    /*left: 25px;*/
+    width:100%;
+    
+}
+/*------------------------ ----MEDIA QUERIES -----------------------------------*/
+@media screen and (min-width:600px)  { 
+
+	.logo {
+            height: 40px;
+            padding-bottom: 30px;
+            padding-top: 30px;
+    
+    }
+	
+}

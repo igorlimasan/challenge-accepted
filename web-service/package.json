@@ -1,0 +1,23 @@
+{
+  "name": "projetoChallenge",
+  "version": "1.0.0",
+  "description": "<p align=\"center\">\r   <a href=\"http://www.climatempo.com.br\">\r       <img src=\"http://i.imgur.com/Q9lCAMF.png\" alt=\"Climatempo\" width=\"300px\"/>\r   </a>\r </p>",
+  "main": "index.js",
+  "dependencies": {
+    "material-components-web": "^0.11.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/igorlimasan/challenge-accepted.git"
+  },
+  "author": "Igor Lima",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/igorlimasan/challenge-accepted/issues"
+  },
+  "homepage": "https://github.com/igorlimasan/challenge-accepted"
+}
