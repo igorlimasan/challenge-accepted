@@ -97,9 +97,6 @@ app.get('/api/get_weather_by_locale_name/:name',function(req,res,next){
     if(nome === null) req.send({error:'NOT FOUND'});
     for(i = 0; i < tempo.length;i++){
         weather=tempo[i];
-        console.log("Cidade json: " + weather.locale.name.toLowerCase().replace(" ","") + "\nCidade solicitada: "+nome.replace(" ",""));
-        //if(weather.locale.name.toLowerCase().replace(" ","") === nome.toLowerCase().replace(" ","")){
-
             if(replaceAccent(weather.locale.name.toLowerCase().replace(" ","")) === 
             replaceAccent(nome.toString().toLowerCase().replace(" ",""))){
             res.send(weather);
